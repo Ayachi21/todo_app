@@ -39,19 +39,29 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
+        $validatedData = $request->validate([
+            'name' => 'required|min:3|max:30',
+            'email' => 'required|email|unique:users,email',
             'role' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed|min:8|max:30',
+            'password_confirmation' => 'required|min:8|max:30',
             
         ]);
   
-        user::create($request->all());
+         user::create($ $validatedData );
+         
+    
+        return User::create([
+            'name' => ['name'],
+            'email' => ['email'],
+            'password' => ['password'],
+            'role'=> ['role'],
+        ]);
+    
    
-        return redirect()->route('user.index')
-                        ->with('success','user created successfully.');
+        return redirect('/user.index')->with('success','user created successfully.');
     }
+    
 
     /**
      * Display the specified resource.

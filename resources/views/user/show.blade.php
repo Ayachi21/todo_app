@@ -15,15 +15,16 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Name:</strong>
+                <h4>Name:</h4>
                 {{ $user->name }}
             </div>
         </div>
         
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Details:</strong>
-                {{ $user->detail }}
+                <h4>Details:</h4>
+                <br> <strong> email : </strong> {{ $user->email  }}  <br>
+               <strong> role :  </strong> {{ $user->role  }} 
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@
              <td>{{ ++$i }}</td>
              <td>{{ $users->name }}</td>
              
-             <td>{{ $users->detail }}</td>
+             <td>{{ $users->email }} <br> {{ $users->role }} </td>
              <td>
                  <form action="{{ route('user.destroy',$users->id) }}" method="POST">
     
