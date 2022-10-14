@@ -42,27 +42,27 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
+                            @if (url::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ url('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
+                            @if (url::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ url('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="collapse navbar-collapse">
-                                <a class="nav-link" href="{{ route('user.index')}} ">
+                                <a class="nav-link" href="{{ url('/admin/user')}} ">
                                         {{ __('Users liste') }}
                                     </a>
                             
-                                <a class="nav-link" href="{{ route('tasks.index') }}">
+                                <a class="nav-link" href="{{ url('tasks') }}">
                                         {{ __('Tasks') }}
                                     </a>
-                                 <a class="nav-link" href="{{ route('project.index') }}">
+                                 <a class="nav-link" href="{{ url('project') }}">
                                         {{ __('Project') }}
                                     </a>
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -70,14 +70,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="{{ url('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ url('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>

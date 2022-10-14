@@ -1,6 +1,7 @@
 
 @extends('tasks.layout')
 @section('content')
+
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -11,7 +12,7 @@
             </div>
         </div>
     </div>
-   
+    <div  class="d-flex justify-content-center align-items-center">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -26,5 +27,6 @@
                 {{ $task->detail }}
             </div>
         </div>
-    </div>
+    </div> 
+    </div>    
 @endsection

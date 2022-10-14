@@ -6,7 +6,7 @@
 </head>
 <body>
 @section('affichage')
-<div class="container">
+<div class="container d-flex justify-content-center align-items-center">
     @yield('content')
 </div>
 @endsection

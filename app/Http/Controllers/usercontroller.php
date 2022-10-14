@@ -39,7 +39,7 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+         $request->validate([
             'name' => 'required|min:3|max:30',
             'email' => 'required|email|unique:users,email',
             'role' => 'required',
@@ -47,26 +47,17 @@ class userController extends Controller
             'password_confirmation' => 'required|min:8|max:30',
             
         ]);
-  
-         user::create($ $validatedData );
-         
-    
-        return User::create([
-            'name' => ['name'],
-            'email' => ['email'],
-            'password' => ['password'],
-            'role'=> ['role'],
-        ]);
-    
+            
+        $show= user::create( $request->all() );
    
-        return redirect('/user.index')->with('success','user created successfully.');
+        return redirect()->route('user.index')->with('success','user created successfully.');
     }
     
 
     /**
      * Display the specified resource.
      *
-     * @param  AppModelsTask  $task
+     * @param  AppModelsTask  $user
      * @return IlluminateHttpResponse
      */
     public function show(user $user)
@@ -121,3 +112,4 @@ class userController extends Controller
                         ->with('success','user deleted successfully');
     }
 }
+

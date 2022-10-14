@@ -18,11 +18,15 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+//admin
+Route::prefix('/admin')->middleware(['auth','isAdmin'])->group(function(){ 
+    Route::resource('user','UserController');
+});
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('tasks','taskcontroller');
-Route::resource('project','projectcontroller');
-Route::resource('user','usercontroller');
+Route::resource('tasks','TaskController');
+Route::resource('project','ProjectController');
+
+
 
 
 

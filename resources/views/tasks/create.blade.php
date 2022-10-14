@@ -24,7 +24,7 @@
     </div>
 @endif
    
-<form action="{{ route('tasks.store') }}" method="POST">
+<form action="{{ route('tasks.store') }}" method="POST"  class="d-flex justify-content-center align-items-center">
     @csrf
   
      <div class="row">

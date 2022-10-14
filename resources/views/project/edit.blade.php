@@ -24,7 +24,7 @@
         </div>
     @endif
   
-    <form action="{{ route('project.update',$project->id) }}" method="POST">
+    <form action="{{ route('project.update',$project->id) }}" method="POST" class="d-flex justify-content-center align-items-center">
         @csrf
         @method('PUT')
    

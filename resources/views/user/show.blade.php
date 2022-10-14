@@ -7,11 +7,11 @@
                 <h2> Show user</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{route('tasks.index')}}"> Back</a>
+                <a class="btn btn-primary" href="{{route('user.index')}}"> Back</a>
             </div>
         </div>
     </div>
-   
+    <div  class="d-flex justify-content-center align-items-center">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -27,5 +27,6 @@
                <strong> role :  </strong> {{ $user->role  }} 
             </div>
         </div>
+    </div>
     </div>
 @endsection
