@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\user;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class userController extends Controller
@@ -21,10 +21,10 @@ class userController extends Controller
     }
 
 
-    /**
+ /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return IlluminateHttpResponse
      */
     public function create()
     {
@@ -44,20 +44,20 @@ class userController extends Controller
             'email' => 'required|email|unique:users,email',
             'role' => 'required',
             'password' => 'required|confirmed|min:8|max:30',
-            'password_confirmation' => 'required|min:8|max:30',
+           
             
         ]);
             
-        $show= user::create( $request->all() );
+        $user= User::create( request(['name','email','password','role']) );
+       
    
         return redirect()->route('user.index')->with('success','user created successfully.');
     }
-    
 
     /**
      * Display the specified resource.
      *
-     * @param  AppModelsTask  $user
+     * @param  AppModelsUser  $user
      * @return IlluminateHttpResponse
      */
     public function show(user $user)
@@ -68,7 +68,7 @@ class userController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  AppModelsTask  $user
+     * @param  AppModelsUser  $user
      * @return IlluminateHttpResponse
      */
     public function edit(user $user)
@@ -80,7 +80,7 @@ class userController extends Controller
      * Update the specified resource in storage.
      *
      * @param  IlluminateHttpRequest  $request
-     * @param  AppModelsTask  $user
+     * @param  AppModelsUser  $user
      * @return IlluminateHttpResponse
      */
     public function update(Request $request, user $user)
@@ -101,7 +101,7 @@ class userController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  AppModelsTask  $user
+     * @param  AppModelsUser  $user
      * @return IlluminateHttpResponse
      */
     public function destroy(user $user)

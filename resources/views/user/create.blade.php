@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user.layout')
 
 @section('content')
 
@@ -12,21 +12,33 @@
         </div>
     </div>
 </div>
-                    <form method="POST" action="{{ route('user.store') }}"   class="d-flex justify-content-center align-items-center">
-                        @csrf
-                        <div class="row">
+@if ($errors->any())
+           <div class="alert alert-danger ">
+               <strong>Whoops!</strong> There were some problems with your input.<br><br>
+               <ul>
+                   @foreach ($errors->all() as $error)
+                       <li>{{ $error }}</li>
+                   @endforeach
+               </ul>
+           </div>
+       @endif
+<form action="{{ route('user.store') }}" method="POST"    class="d-flex justify-content-center align-items-center">
+    @csrf
+    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
                 <input type="text" name="name" class="form-control" placeholder="Name" required autocomplete="name" autofocus>
             </div>
         </div>
+    
         
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>role:</strong>
-                <input type="text" name="role" class="form-control" placeholder="role" required autocomplete="role" autofocus>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>role:</strong>
+            <input type="text" name="role" class="form-control" placeholder="role" required autocomplete="role" autofocus>
         </div>
+    </div>    
                         
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -48,7 +60,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>confirm Password :</strong>
-                <input id="password-confirm" type="password" name="password_wonfirmation" class="form-control" placeholder="confirm password"  autofocus>
+                <input id="password-confirm" type="password" name="password_confirmation" class="form-control" placeholder="confirm password"  required autocomplete="new-password">
             </div>
         </div>
                         
@@ -57,9 +69,10 @@
 
                       
 
-                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary">Create User</button>
-                        </div>
-                    </form>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Create User</button>
+        </div>
+    </div>
+    </form>
                 
 @endsection

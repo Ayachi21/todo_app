@@ -20,11 +20,13 @@ Route::get('/', function () {
 Auth::routes();
 //admin
 Route::prefix('/admin')->middleware(['auth','isAdmin'])->group(function(){ 
-    Route::resource('user','UserController');
+    Route::resource('user','UserController');  
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('tasks','TaskController');
+
 Route::resource('project','ProjectController');
+
 
 
 

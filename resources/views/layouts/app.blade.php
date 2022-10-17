@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/welcome') }}">
                 {{ __('ToDo') }}
                     
                 </a>
@@ -42,20 +42,20 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (url::has('login'))
+                            @if (route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
-                            @if (url::has('register'))
+                            @if (route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="collapse navbar-collapse">
-                                <a class="nav-link" href="{{ url('/admin/user')}} ">
+                                <a class="nav-link" href="{{ url('admin/user')}} ">
                                         {{ __('Users liste') }}
                                     </a>
                             
@@ -70,14 +70,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('logout') }}"
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
 
-                                    <form id="logout-form" action="{{ url('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>

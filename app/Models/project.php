@@ -10,4 +10,8 @@ class project extends Model
     protected $fillable = [
         'name', 'detail'
     ];
+    public function tasks()
+    {
+        return $this->hasMany('App\task');
+    }
 }
