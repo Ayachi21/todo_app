@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\projectController;
 use App\Models\Task;
+use App\Models\project;
+use App\Models\user;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -41,6 +43,8 @@ class TaskController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            '$project->name' => 'required',
+            '$user->name' => 'required',
             'detail' => 'required',
         ]);
   
@@ -83,6 +87,8 @@ class TaskController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            '$project->name' => 'required',
+            '$user->name' => 'required',
             'detail' => 'required',
         ]);
   

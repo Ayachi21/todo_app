@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/welcome') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                 {{ __('ToDo') }}
                     
                 </a>
@@ -42,20 +42,20 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (route::has('login'))
+                            @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
-                            @if (route::has('register'))
+                            @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="collapse navbar-collapse">
-                                <a class="nav-link" href="{{ url('admin/user')}} ">
+                                <a class="nav-link" href="{{ url('/admin/user')}} ">
                                         {{ __('Users liste') }}
                                     </a>
                             

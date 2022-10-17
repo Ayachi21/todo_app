@@ -23,13 +23,16 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            
+            <th>Name project</th>
+            <th>Name task</th>
             <th>Details</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($tasks as $task)
         <tr>
             <td>{{ ++$i }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $project->name }}</td>
             <td>{{ $task->name }}</td>
             
             <td>{{ $task->detail }}</td>

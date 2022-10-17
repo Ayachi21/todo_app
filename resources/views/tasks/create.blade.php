@@ -34,6 +34,18 @@
                 <input type="text" name="name" class="form-control" placeholder="Name">
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Name project:</strong>
+                <input type="text" name="name_project" class="form-control" placeholder="Name_project">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Name task:</strong>
+                <input type="text" name="name_task" class="form-control" placeholder="Name_task">
+            </div>
+        </div>
         
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
