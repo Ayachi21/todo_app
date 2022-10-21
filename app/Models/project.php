@@ -13,9 +13,15 @@ class project extends Model
     protected $fillable = [
         'name', 'detail' 
     ];
-    public function tasks():HasMany
+    public function tasks()
     {
         return $this->hasMany(task::class);
+    }
+    protected static function booted()
+    {   parent::boot();
+        static::deleted(function ($project) {
+            $project->tasks()->delete();
+        });
     }
 
 }

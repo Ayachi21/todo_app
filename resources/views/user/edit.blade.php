@@ -57,7 +57,7 @@
                <div class="col-xs-12 col-sm-12 col-md-12">
                    <div class="form-group">
                        <strong>password:</strong>
-                       <div class="col-md-6">
+                       <div class="col-md-6"><br>
                                 <input id="password"value="{{ $users->password }}" style="width: 400px" type="password" class="form-control @error('password') is-invalid @enderror" name="password" >
 
                                 @error('password')

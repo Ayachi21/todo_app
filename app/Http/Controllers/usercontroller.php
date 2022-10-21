@@ -53,7 +53,7 @@ class userController extends Controller
         $users= User::create( request(['name','email','password','role']) );
        
    
-        return redirect()->route('user.index')->with('success','user created successfully.');
+        return redirect()->route('user.index',compact('users'))->with('success','user created successfully.');
     }
 
     /**
@@ -96,7 +96,7 @@ class userController extends Controller
             'name' => 'required|min:3|max:30',
             'email' => 'required|email',
             'role' => 'required',
-            'password' => 'required|min:8|max:30',
+            
         ]);
   
         User::whereId($id)->update($upp);

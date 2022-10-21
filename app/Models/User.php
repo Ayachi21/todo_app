@@ -46,12 +46,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function task():HasMany
+    public function task()
     {
         return $this->hasMany(task::class);
     }
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+    protected static function booted()
+    {   parent::boot();
+        static::deleted(function ($user) {
+            $user->task()->delete();
+        });
     }
 }
