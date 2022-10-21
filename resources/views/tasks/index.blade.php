@@ -22,20 +22,23 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>Name project</th>
-            <th>Name task</th>
+            <th>user</th>
+            <th> project</th>
+            <th> task</th>
             <th>Details</th>
+            <td>Status</td>
+          <td>Deadline</td>
             <th width="280px">Action</th>
         </tr>
         @foreach ($tasks as $task)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $project->name }}</td>
+            <td>{{ $task->user->name }}</td>
+            <td>{{ $task->project->name }}</td>
             <td>{{ $task->name }}</td>
-            
             <td>{{ $task->detail }}</td>
+            <td>{{$task->status}}</td>
+            <td>{{$task->deadline}}</td>
             <td>
                 <form action="{{ route('tasks.destroy',$task->id) }}" method="POST">
    
@@ -53,6 +56,6 @@
         @endforeach
     </table>
   
-    {!! $tasks->links() !!}
+    {!! $tasks ->links() !!}
       
 @endsection

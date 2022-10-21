@@ -28,30 +28,48 @@
     @csrf
   
      <div class="row">
+     <div class="form-group">
+              <label for="cases">User :</label>
+                <select name="user_id" class="form-control">
+                    <option disabled selected value> -- select a user -- </option>
+                    @foreach ($users as $user)
+                    <option value="{{ $user->id}}">{{ $user->name}}</option>
+                    @endforeach
+                </select>
+          </div>
+          <div class="form-group">
+            <label for="cases">Project :</label>
+            <select name="project_id" class="form-control">
+                <option disabled selected value> -- select a project -- </option>
+                @foreach ($projects as $project)
+                <option value="{{ $project->id}}">{{ $project->name}}</option>
+                @endforeach
+            </select>
+      </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Name:</strong>
-                <input type="text" name="name" class="form-control" placeholder="Name">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Name project:</strong>
-                <input type="text" name="name_project" class="form-control" placeholder="Name_project">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+            <div class="form-group" >
                 <strong>Name task:</strong>
-                <input type="text" name="name_task" class="form-control" placeholder="Name_task">
+                <input type="text"  name="name" class="form-control" placeholder="Name_task">
             </div>
         </div>
         
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
+            <div class="form-group" >
                 <strong>Detail:</strong>
                 <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
             </div>
+        </div>
+        <div class="form-group">
+            <label for="cases">Status :</label>
+            <select name="status" class="form-control" value="status">
+                <option value="todo">To Do</option>
+                <option value="doing">Doing</option>
+                <option value="done">Done</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cases">Deadline :</label>
+            <input type="date" class="form-control" name="deadline"/>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>

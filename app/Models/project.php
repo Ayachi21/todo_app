@@ -1,21 +1,21 @@
 <?php
   
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use IlluminateDatabaseEloquentModel;
    
 class project extends Model
 {
+    use SoftDeletes; 
     protected $fillable = [
-        'name', 'detail'
+        'name', 'detail' 
     ];
-    public function tasks()
+    public function tasks():HasMany
     {
-        return $this->hasMany('App\task');
+        return $this->hasMany(task::class);
     }
-    public function user()
-    {
-    	return $this->belongsTo('App\user');
-    }
+
 }

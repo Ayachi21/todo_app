@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\User; 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -14,9 +15,9 @@ class userController extends Controller
      */
     public function index()
     {
-        $user = user::latest()->paginate(5);
-  
-        return view('user.index',compact('user'))
+        $users = user::all();
+        $users = User::latest()->paginate(5) ;   
+        return view('user.index',compact('users'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -28,6 +29,7 @@ class userController extends Controller
      */
     public function create()
     {
+        
         return view('user.create');
     }
 
@@ -43,12 +45,12 @@ class userController extends Controller
             'name' => 'required|min:3|max:30',
             'email' => 'required|email|unique:users,email',
             'role' => 'required',
-            'password' => 'required|confirmed|min:8|max:30',
+            'password' => 'required|confirmed|min:8|max:30|unique:users',
            
             
         ]);
             
-        $user= User::create( request(['name','email','password','role']) );
+        $users= User::create( request(['name','email','password','role']) );
        
    
         return redirect()->route('user.index')->with('success','user created successfully.');
@@ -60,9 +62,11 @@ class userController extends Controller
      * @param  AppModelsUser  $user
      * @return IlluminateHttpResponse
      */
-    public function show(user $user)
+    public function show( $id)
     {
-        return view('user.show',compact('user'));
+        $users = User::findOrFail($id);
+       
+        return view('user.show',compact('users'));
     }
 
     /**
@@ -71,9 +75,12 @@ class userController extends Controller
      * @param  AppModelsUser  $user
      * @return IlluminateHttpResponse
      */
-    public function edit(user $user)
+    public function edit( $id)
     {
-        return view('user.edit',compact('user'));
+        
+        $users = User::findOrFail($id);
+        
+        return view('user.edit',compact('users'));
     }
 
     /**
@@ -83,16 +90,16 @@ class userController extends Controller
      * @param  AppModelsUser  $user
      * @return IlluminateHttpResponse
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request,  $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
+        $upp=$request->validate([
+            'name' => 'required|min:3|max:30',
+            'email' => 'required|email',
             'role' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:8|max:30',
         ]);
   
-        $user->update($request->all());
+        User::whereId($id)->update($upp);
   
         return redirect()->route('user.index')
                         ->with('success','user updated successfully');
@@ -104,11 +111,12 @@ class userController extends Controller
      * @param  AppModelsUser  $user
      * @return IlluminateHttpResponse
      */
-    public function destroy(user $user)
+    public function destroy( $id)
     {
-        $user->delete();
+        $users= User::findOrFail($id);
+        $users->delete();
   
-        return redirect()->route('user.index')
+        return redirect()->route('user.index',compact('users'))
                         ->with('success','user deleted successfully');
     }
 }

@@ -26,8 +26,8 @@
    
 <form action="{{ route('project.store') }}" method="POST" class="d-flex justify-content-center align-items-center">
     @csrf
-  
-     <div class="row">
+    
+        <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>

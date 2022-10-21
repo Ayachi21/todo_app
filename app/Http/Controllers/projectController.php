@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\project;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -15,9 +16,11 @@ class projectController extends Controller
      */
     public function index()
     {
-        $project = Project::latest()->paginate(5);
-  
-        return view('project.index',compact('project'))
+        $projects = Project::latest()->paginate(5);
+       
+        
+        $projects = Project::all();
+        return view('project.index',compact('projects',))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -29,6 +32,7 @@ class projectController extends Controller
      */
     public function create()
     {
+        
         return view('project.create');
     }
 
@@ -43,6 +47,7 @@ class projectController extends Controller
         $request->validate([
             'name' => 'required',
             'detail' => 'required',
+            
         ]);
   
         project::create($request->all());
@@ -57,9 +62,11 @@ class projectController extends Controller
      * @param  AppModelsproject  $project
      * @return IlluminateHttpResponse
      */
-    public function show(project $project)
+    public function show( $id)
     {
-        return view('project.show',compact('project'));
+        $projects = Project::findOrFail($id);
+        
+        return view('project.show',compact('projects'));
     }
 
     /**
@@ -68,9 +75,11 @@ class projectController extends Controller
      * @param  AppModelsproject  $project
      * @return IlluminateHttpResponse
      */
-    public function edit(project $project)
+    public function edit( $id)
     {
-        return view('project.edit',compact('project'));
+        
+        $projects = Project::findOrFail($id);
+        return view('project.edit',compact('projects'));
     }
 
     /**
@@ -80,14 +89,14 @@ class projectController extends Controller
      * @param  AppModelsproject  $project
      * @return IlluminateHttpResponse
      */
-    public function update(Request $request, project $project)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        $upp=$request->validate([
             'name' => 'required',
             'detail' => 'required',
+            
         ]);
-  
-        $project->update($request->all());
+        Project::whereId($id)->update($upp);
   
         return redirect()->route('project.index')
                         ->with('success','project updated successfully');
@@ -99,9 +108,10 @@ class projectController extends Controller
      * @param  AppModelsproject  $project
      * @return IlluminateHttpResponse
      */
-    public function destroy(project $project)
+    public function destroy($id)
     {
-        $project->delete();
+        $projects = Project::findOrFail($id);
+        $projects->delete();
   
         return redirect()->route('project.index')
                         ->with('success','project deleted successfully');

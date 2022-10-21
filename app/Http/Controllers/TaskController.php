@@ -16,9 +16,14 @@ class TaskController extends Controller
      */
     public function index()
     {
+        $tasks = Task::all();
+        $users = User::all();
+        $projects = project::all();
         $tasks = Task::latest()->paginate(5);
+        $users = User::latest()->paginate(5);
+        $projects = project::latest()->paginate(5);
   
-        return view('tasks.index',compact('tasks'))
+        return view('tasks.index',compact('tasks','users','projects'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -30,7 +35,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        $users = User::all();
+        $projects= Project::all();
+        return view('tasks.create', ['users'=>$users], ['projects'=>$projects]);
     }
 
     /**
@@ -43,9 +50,11 @@ class TaskController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            '$project->name' => 'required',
-            '$user->name' => 'required',
+            'project_id' => 'required',
+            'user_id' => 'required',
             'detail' => 'required',
+            'deadline'=> 'required',
+            'status' => 'required',
         ]);
   
         Task::create($request->all());
@@ -60,9 +69,16 @@ class TaskController extends Controller
      * @param  AppModelsTask  $task
      * @return IlluminateHttpResponse
      */
-    public function show(Task $task)
+    public function show( $id)
     {
-        return view('tasks.show',compact('task'));
+        $task = Task::findOrFail($id);
+        $user = User::all();
+        $user = User::findOrFail($id);
+        $project= Project::all();
+        $project = Project::findOrFail($id);
+        
+        
+        return view('tasks.show',compact('task','project','user'));
     }
 
     /**
@@ -71,9 +87,14 @@ class TaskController extends Controller
      * @param  AppModelsTask  $task
      * @return IlluminateHttpResponse
      */
-    public function edit(Task $task)
-    {
-        return view('tasks.edit',compact('task'));
+    public function edit( $id)
+    {    
+        $task = Task::findOrFail($id);    
+        $user = User::all();
+        $project= Project::all();
+        
+        
+        return view('tasks.edit',compact('task', 'user', 'project'));
     }
 
     /**
@@ -83,16 +104,19 @@ class TaskController extends Controller
      * @param  AppModelsTask  $task
      * @return IlluminateHttpResponse
      */
-    public function update(Request $request, Task $task)
-    {
-        $request->validate([
+    public function update(Request $request, $id)
+    {                       
+
+        $upp= $request->validate([
             'name' => 'required',
-            '$project->name' => 'required',
-            '$user->name' => 'required',
+            'project_id' => 'required',
+            'user_id' => 'required',
             'detail' => 'required',
+            'deadline'=> 'required',
+            'status' => 'required',
         ]);
   
-        $task->update($request->all());
+        Task::whereId($id)->update($upp);
   
         return redirect()->route('tasks.index')
                         ->with('success','Task updated successfully');
@@ -104,11 +128,12 @@ class TaskController extends Controller
      * @param  AppModelsTask  $task
      * @return IlluminateHttpResponse
      */
-    public function destroy(Task $task)
+    public function destroy( $id)
     {
+        $task = Task::findOrFail($id);
         $task->delete();
   
-        return redirect()->route('tasks.index')
+        return redirect()->route('tasks.index' ,compact('task'))
                         ->with('success','Task deleted successfully');
     }
 }

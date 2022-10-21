@@ -23,29 +23,30 @@
             </ul>
         </div>
     @endif
-  
-    <form action="{{ route('project.update',$project->id) }}" method="POST" class="d-flex justify-content-center align-items-center">
+    
+    <form action="{{ route('project.update',$projects->id) }}" method="POST" class="d-flex justify-content-center align-items-center">
         @csrf
         @method('PUT')
-   
+        
          <div class="row">
+            
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>
-                    <input type="text" name="name" value="{{ $project->name }}" class="form-control" placeholder="Name">
+                    <input type="text" name="name" value="{{ $projects->name }}" class="form-control" placeholder="Name">
                 </div>
             </div>
             
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Detail:</strong>
-                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $project->detail }}</textarea>
+                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $projects->detail }}</textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-   
+        
     </form>
 @endsection 

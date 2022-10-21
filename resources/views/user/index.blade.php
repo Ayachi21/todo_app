@@ -27,18 +27,18 @@
              <th>Details</th>
              <th width="280px">Action</th>
          </tr>
-         @foreach ($user as $users)
+         @foreach ($users as $user)
          <tr>
              <td>{{ ++$i }}</td>
-             <td>{{ $users->name }}</td>
+             <td>{{ $user->name }}</td>
              
-             <td>{{ $users->email }} <br> {{ $users->role }} </td>
+             <td>{{ $user->email }} <br> {{ $user->role }} </td>
              <td>
-                 <form action="{{ route('user.destroy',$users->id) }}" method="POST">
+                 <form action="{{ route('user.destroy',$user->id) }}" method="POST">
     
-                     <a class="btn btn-info" href="{{route('user.show',$users->id)}}">Show</a>
+                     <a class="btn btn-info" href="{{route('user.show',$user->id)}}">Show</a>
                      
-                     <a class="btn btn-primary" href="{{route('user.edit',$users->id)}}">Edit</a>
+                     <a class="btn btn-primary" href="{{route('user.edit',$user->id)}}">Edit</a>
     
                      @csrf
                      @method('DELETE')
@@ -50,6 +50,6 @@
          @endforeach
      </table>
    
-     {!! $user->links() !!}
+     {!! $users->links() !!}
        
  @endsection

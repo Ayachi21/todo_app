@@ -22,23 +22,25 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>Name</th>
+            <th>project</th>
             
             <th>Details</th>
+            
             <th width="280px">Action</th>
         </tr>
-        @foreach ($project as $projects)
+        @foreach ($projects as $project)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $projects->name }}</td>
+            <td>{{ $project->name }}</td>
+          
+            <td>{{ $project->detail }}</td>
             
-            <td>{{ $projects->detail }}</td>
             <td>
-                <form action="{{ route('project.destroy',$projects->id) }}" method="POST">
+                <form action="{{ route('project.destroy',$project->id) }}" method="POST">
    
-                    <a class="btn btn-info" href="{{route('project.show',$projects->id)}}">Show</a>
+                    <a class="btn btn-info" href="{{route('project.show',$project->id)}}">Show</a>
     
-                    <a class="btn btn-primary" href="{{route('project.edit',$projects->id)}}">Edit</a>
+                    <a class="btn btn-primary" href="{{route('project.edit',$project->id)}}">Edit</a>
    
                     @csrf
                     @method('DELETE')
@@ -50,6 +52,6 @@
         @endforeach
     </table>
   
-    {!! $project->links() !!}
-      
+    
+    
 @endsection

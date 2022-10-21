@@ -34,10 +34,15 @@
     
         
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>role:</strong>
-            <input type="text" name="role" class="form-control" placeholder="role" required autocomplete="role" autofocus>
+    <div class="form-group">
+            <label for="cases">role :</label>
+            <select name="role" class="form-control" value="role" required autocomplete="role" autofocus>
+                <option selected>-- role --</option>
+                <option value="User">User</option>    
+                <option value="Admin">Admin </option>
+            </select>
         </div>
+        
     </div>    
                         
         <div class="col-xs-12 col-sm-12 col-md-12">
