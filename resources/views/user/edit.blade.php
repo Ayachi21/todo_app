@@ -9,7 +9,7 @@
                </div>
                <div class="pull-right">
                    <a class="btn btn-primary" href="{{route('user.index')}}"> Back</a>
-               </div>s
+               </div>
            </div>
        </div>
       
@@ -29,22 +29,22 @@
            @method('PUT')
            
             <div class="row">
-               <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="d-flex justify-content-center align-items-center">
                    <div class="form-group">
                        <strong>Name:</strong>
                        <input type="text" name="name" style="width: 400px" value="{{ $users->name }}" class="form-control" placeholder="Name">
                    </div>
                </div>
                
-               <div class="col-xs-12 col-sm-12 col-md-12">
+               <div class="d-flex justify-content-center align-items-center">
                    <div class="form-group">
                        <strong>email:</strong>
                        <input type="text" name="email" style="width: 400px" value="{{ $users->email }}" class="form-control" placeholder="email">
                    </div>
                </div>
-               <div class="col-xs-12 col-sm-12 col-md-12">
+               <div class="d-flex justify-content-center align-items-center">
                <div class="form-group">
-                    <label for="cases">role :</label>
+                    <label for="cases" style="width: 400px">role :</label>
                         <select name="role" class="form-control" value="{{ $users->role }}">
                             <option selected>-- role --</option>    
                             <option value="Admin">Admin </option>
@@ -54,10 +54,10 @@
                 </div>
                   
                </div>
-               <div class="col-xs-12 col-sm-12 col-md-12">
+               <div class="d-flex justify-content-center align-items-center">
                    <div class="form-group">
                        <strong>password:</strong>
-                       <div class="col-md-6"><br>
+                       <div class="d-flex justify-content-center align-items-center"><br>
                                 <input id="password"value="{{ $users->password }}" style="width: 400px" type="password" class="form-control @error('password') is-invalid @enderror" name="password" >
 
                                 @error('password')
@@ -68,7 +68,7 @@
                             </div>
                    </div>
                </div>
-               <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+               <div class="d-flex justify-content-center align-items-center">
                  <button type="submit" class="btn btn-primary">Submit</button>
                </div>
            </div>

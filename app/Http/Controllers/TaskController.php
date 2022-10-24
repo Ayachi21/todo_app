@@ -69,13 +69,13 @@ class TaskController extends Controller
      * @param  AppModelsTask  $task
      * @return IlluminateHttpResponse
      */
-    public function show( $id)
+    public function show(Task $task, User $user, Project $project)
     {
-        $task = Task::findOrFail($id);
-        $user = User::all();
-        $user = User::findOrFail($id);
-        $project= Project::all();
-        $project = Project::findOrFail($id);
+        $task = Task::find($task->id);
+        
+        $user = User::find($user->id);
+        
+        $project = Project::find($project->id);
         
         
         return view('tasks.show',compact('task','project','user'));
