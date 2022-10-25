@@ -1,5 +1,5 @@
 
-@extends('tasks.layout')
+@extends('Utilisateur.layout')
  
  @section('content')
      <div class="row">
@@ -28,19 +28,19 @@
            <td>Deadline</td>
              <th width="280px">Action</th>
          </tr>
-         @foreach ($tasks as $task)
+         @foreach ($user->task as $tasks)
          <tr>
              <td>{{ ++$i }}</td>
-             <td>{{ $task->user->name }}</td>
-             <td>{{ $task->project->name }}</td>
-             <td>{{ $task->name }}</td>
-             <td>{{ $task->detail }}</td>
-             <td>{{$task->status}}</td>
-             <td>{{$task->deadline}}</td>
+             <td>{{ $tasks->user->name }}</td>
+             <td>{{ $tasks->project->name }}</td>
+             <td>{{ $tasks->name }}</td>
+             <td>{{ $tasks->detail }}</td>
+             <td>{{$tasks->status}}</td>
+             <td>{{$tasks->deadline}}</td>
              <td>
                
     
-                     <a class="btn btn-info" href="{{route('tasks.show',$task->id)}}">Show</a>
+                     <a class="btn btn-info" href="{{route('utilisateur.show',$tasks->id)}}">Show</a>
      
                    
     
@@ -52,6 +52,6 @@
          @endforeach
      </table>
    
-     {!! $tasks ->links() !!}
+    
        
  @endsection

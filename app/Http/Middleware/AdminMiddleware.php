@@ -19,7 +19,7 @@ class AdminMiddleware
     {
        if(Auth::check()){
 
-            if(Auth::user()->role="Admin") {
+            if(Auth::user()->role =="Admin") {
                 return $next($request);
             }else{
                 return redirect('/home')->with('message','access denied!!');

@@ -59,10 +59,13 @@
                                         {{ __('Users liste') }}
                                     </a>
                             
-                                <a class="nav-link" href="{{ url('tasks') }}">
+                                <a class="nav-link" href="{{ url('/admin/tasks') }}">
                                         {{ __('Tasks') }}
                                     </a>
-                                 <a class="nav-link" href="{{ url('project') }}">
+                                    <a class="nav-link" href="{{ url('/utilisateur') }}">
+                                        {{  Auth::user()->name  }} {{('Tasks')}}
+                                    </a>
+                                 <a class="nav-link" href="{{ url('/admin/project') }}">
                                         {{ __('Project') }}
                                     </a>
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
