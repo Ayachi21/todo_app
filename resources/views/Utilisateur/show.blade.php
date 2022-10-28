@@ -18,12 +18,16 @@
     <div  class="d-flex justify-content-center align-items-center">
             <div class="form-group" >
                 <strong>Name :</strong>
-                {{ Auth::user()->name }}
+                {{ $task->user->name }}
             </div>
         </div>
-      
+        <div  class="d-flex justify-content-center align-items-center">
+            <div class="form-group" >
+                <strong>project name :</strong>
+                {{ $task->project->name }}
+            </div>
+        </div>
        
-        
         <div  class="d-flex justify-content-center align-items-center">
             <div class="form-group">
                 <strong>Name task:</strong>
