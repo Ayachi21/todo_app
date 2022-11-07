@@ -14,14 +14,21 @@ class WorkerController extends Controller
      *
      * @return IlluminateHttpResponse
      */
-    public function index(Request $request, Task $tasks)
+    public function index(Request $request)
     {
      
            
             $user = User::find(Auth::id()) ;
           
-            $tasks = Task::latest()->paginate(5);
-            
+            $tasks = Task::where([
+                ['name', '!=', null],
+                [function ($query) use ($request) {
+                if (($term = $request->term)) {
+                    $query->orWhere('name', 'LIKE', '%'. $term. '%')->get();
+                }
+                }]
+            ])->orderBy("id", "desc")
+              ->paginate(5);
             
       
             return view('Utilisateur.index',compact('tasks','user'))
@@ -40,10 +47,10 @@ class WorkerController extends Controller
      * @param  AppModelsTask  $task
      * @return IlluminateHttpResponse
      */
-    public function show(Task $task, User $user, Project $project)
+    public function show( $id)
     {
-       
-        return view('Utilisateur.show',compact('user','project','task'));
+       $task= Task::find($id);
+        return view('Utilisateur.show',compact('task'));
     }
 
     

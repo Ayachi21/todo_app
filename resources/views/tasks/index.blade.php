@@ -2,6 +2,7 @@
 @extends('tasks.layout')
  
 @section('content')
+
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -12,7 +13,31 @@
             </div>
         </div>
     </div>
-   
+    <div>
+            <div class="mx-auto pull-right">
+    <div class="">
+    <form action="{{ route('tasks.index') }}" method="GET" role="search">
+    
+                        <div class="input-group">
+                            <span class="input-group-btn mr-5 mt-1 ">
+                                <button class="btn btn-info mb-5" type="submit" title="Search tasks" style="font-size: 24px">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </span>
+                            <input type="text" class="form-control mr-2" name="term" placeholder="Search tasks" id="term">
+                            <a href="{{ route('tasks.index') }}" class=" mt-1">
+                                <span class="pull-right " style=" position: absolute; top: 1px; left: 260px;">
+                                    <button class="btn btn-light pull-right " type="button" title="Refresh page" style="font-size: 20px">
+                                        <span class="fa fa-refresh "></span>
+                                    </button>
+                                </span>
+                                
+                            </a>
+                        </div>
+                    </form>
+</div>
+</div>
+        </div>
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>

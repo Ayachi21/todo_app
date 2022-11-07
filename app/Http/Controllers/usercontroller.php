@@ -13,12 +13,19 @@ class userController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = user::all();
-        $users = User::latest()->paginate(5) ;   
-        return view('user.index',compact('users'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $users = User::where([
+            ['name', '!=', null],
+            [function ($query) use ($request) {
+            if (($term = $request->term)) {
+                $query->orWhere('name', 'LIKE', '%'. $term. '%')->get();
+            }
+            }]
+        ])->orderBy("id", "desc")
+          ->paginate(5);
+          return view('user.index',compact('users'))
+          ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 
@@ -119,5 +126,8 @@ class userController extends Controller
         return redirect()->route('user.index',compact('users'))
                         ->with('success','user deleted successfully');
     }
+    
+
+   
 }
 

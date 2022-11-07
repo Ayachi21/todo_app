@@ -14,12 +14,17 @@ class projectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::latest()->paginate(5);
-       
-        
-        $projects = Project::all();
+        $projects = Project::where([
+            ['name', '!=', null],
+            [function ($query) use ($request) {
+            if (($term = $request->term)) {
+                $query->orWhere('name', 'LIKE', '%'. $term. '%')->get();
+            }
+            }]
+        ])->orderBy("id", "desc")
+          ->paginate(5);
         return view('project.index',compact('projects',))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
