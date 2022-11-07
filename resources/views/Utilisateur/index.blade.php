@@ -12,29 +12,34 @@
      </div>
      <div class="row mw-">
         <div>
-            <div class="mx-auto pull-right">
-                <div class="">
+            <div class="mx-auto pull-left">
+                
                     <form action="{{ route('utilisateur.index') }}" method="GET" role="search">
     
                         <div class="input-group">
                             
-                                
-                                <button class="btn btn-info mb-5" type="submit" title="Search tasks" style="font-size: 20px">
-                                    <span class="fa fa-search" > search</span>
+                            <input type="text" class="form-control mr-2" name="term" placeholder="Search your tasks" id="term" style="position :left ;  width :500px ; height: 50px;">
+                            <span class="input-group-btn mr-5 mt-1 ">
+                                <button class="btn btn-info mb-5" type="submit" title="Search your tasks" style="font-size: 20px">
+                                    <span class="fa fa-search"> search</span>
                                 </button>
-                            
-                            <input type="text" class="form-control mr-2" name="term" placeholder="Search your tasks" id="term">
-                            <a href="{{ route('utilisateur.index') }}" class=" mt-1">
-                                <span class="pull-right " style=" position: absolute; top: 1px; left: 260px;">
-                                    <button class="btn btn-light pull-right " type="button" title="Refresh page" style="font-size: 20px">
-                                        <span class="fa fa-refresh "> search</span>
+                            </span>
+                           
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+                <div class="mx-auto pull-right">
+                        <a href="{{ route('utilisateur.index') }}" class=" mt-1">
+                                <span class="pull-right " >
+                                    <button class="btn btn-info mb-5 pull-right " type="button" title="Refresh page" style="font-size: 20px">
+                                        <span class="fa fa-refresh "> refresh</span>
                                     </button>
                                 </span>
                                 
                             </a>
                         </div>
-                    </form>
-                </div>
             </div>
         </div>
      @if ($message = Session::get('success'))
@@ -77,7 +82,7 @@
          </tr>
          @endforeach
      </table>
-   
+
     
        
  @endsection
